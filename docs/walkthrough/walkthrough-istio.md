@@ -313,15 +313,15 @@ spec:
           portNumber: 9097
           filterChain:
             filter:
-              name: "envoy.http_connection_manager"
+              name: "envoy.filters.network.http_connection_manager"
               subFilter:
-                name: "envoy.router"
+                name: "envoy.filters.http.router"
       patch:
         operation: INSERT_BEFORE
         value: # lua filter specification
           name: envoy.lua
           typed_config:
-            "@type": "type.googleapis.com/envoy.config.filter.http.lua.v2.Lua"
+            "@type": "type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua"
             inlineCode: |
               -- the following domain and path can be adjusted
               -- to be where the tekton dashboard resides
